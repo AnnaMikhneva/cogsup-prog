@@ -16,10 +16,11 @@ Write a for-loop that prints out the following line 20 times:
 """
 
 print("Exercise 2.1")
-
-pass
+for i in range(20):
+    print("All work and no play makes Jack a dull boy.")
 
 print("---")
+
 """
 Exercise 2.2
 
@@ -29,11 +30,10 @@ Write a for-loop that prints out the numbers from 0 up to 5 inclusive.
 """
 
 print("Exercise 2.2")
-
-pass
+for i in range(6):  
+    print(i)
 
 print("---")
-
 
 """
 Exercise 2.3
@@ -44,8 +44,8 @@ Write a for-loop that prints out the EVEN numbers from 2 up to 8 inclusive.
 """
 
 print("Exercise 2.3")
-
-pass
+for i in range(2, 9, 2): 
+    print(i)
 
 print("---")
 
@@ -58,8 +58,8 @@ Now write another loop to print 9 through 0 (i.e., backwards).
 """
 
 print("Exercise 2.4")
-
-pass
+for i in range(9, -1, -1):  
+    print(i)
 
 print("---")
 
@@ -80,8 +80,8 @@ Write code that prints out the following sequence:
 """
 
 print("Exercise 2.5")
-
-pass
+for i in range(1, 9):  
+    print('z' * i)
 
 print("---")
 
@@ -101,12 +101,13 @@ Hint: The function print takes an argument called 'end', which specifies what
 to print at the end of the input string. By default, this parameter is set to \n, 
 which is why the script moves automatically to a new line after the execution
 of a simple print-statement.
-------
 """
 
 print("Exercise 2.6")
-
-pass
+for i in range(1, 6):
+    for j in range(1, i + 1):
+        print(j, end='')
+    print()  
 
 print("---")
 
@@ -126,16 +127,15 @@ If rows equals 5, it should print:
  ooooooooo
 
 You should be able to give any value to row and see a triangle made out of 'o's. 
-
-Hint: Before you start coding, think what set of instructions (algorithm) 
-your code needs to carry out for a certain value of rows.
-------
 """
 
 print("Exercise 2.7")
 
 rows = 5
-pass
+for i in range(1, rows + 1):
+    print(' ' * (rows - i), end='')
+
+    print('o' * (2 * i - 1))
 
 print("---")
 
@@ -156,15 +156,14 @@ Write code that prints the multiplication table:
  9  18  27  36  45  54  63  72  81  90
  10  20  30  40  50  60  70  80  90 100
 
-You should be able to give any value to row and see a pyramid. 
-
 Hint: One of the two links at the top of this script contains helpful information
 on how to align the numbers.
-------
 """
 
 print("Exercise 2.8")
-
-pass
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i*j:4}", end='')
+    print() 
 
 print("---")
