@@ -18,7 +18,7 @@ def calculate_collision_point(green_square, red_square, direction):
     # Each square is 50x50, so the distance between centers at collision should be 50 pixels
     collision_ratio = 50 / distance if distance > 0 else 1
     
-    # Calculate the collision point (where green should stop)
+
     collision_x = green_pos[0] + dx * collision_ratio
     collision_y = green_pos[1] + dy * collision_ratio
     
@@ -56,8 +56,8 @@ for event_num in range(3):
     exp.clock.wait(1000)
     
     # Calculate direction vector from green to red
-    dx = red_x - 0  # green is at (0, 0)
-    dy = red_y - 0  # green is at (0, 0)
+    dx = red_x - 0  
+    dy = red_y - 0  
     distance = math.sqrt(dx**2 + dy**2)
     
     # Normalize direction vector
@@ -65,11 +65,10 @@ for event_num in range(3):
         dx /= distance
         dy /= distance
     
-    # Define animation parameters
-    speed = 5  # Pixels per frame
+    speed = 5 
     frames_to_move = int(distance // speed) - 10  # Subtract 10 to account for square size
     
-    # Animate green square moving toward red square
+
     for frame in range(frames_to_move):
         green_square.move((dx * speed, dy * speed))
         green_square.present(clear=True, update=False)
@@ -95,7 +94,5 @@ for event_num in range(3):
         exp.clock.wait(500)
 
 
-#exp.keyboard.wait()
 
-# End the current session and quit expyriment
 control.end()

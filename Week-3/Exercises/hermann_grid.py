@@ -52,3 +52,7 @@ def create_hermann_grid(square_size, spacing, rows, columns,
 
 create_hermann_grid(square_size=70, spacing=15, rows=8, columns=8,
                        square_color=(0, 0, 0), background_color=(255, 255, 255))
+
+#  spacing is crucial - too close or too far weakens the illusion
+#  color contrast affects illusion strength (black-white is the best)
+#  more than 4 rows and columns because the more intersections - the stronger illusion

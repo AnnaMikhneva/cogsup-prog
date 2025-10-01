@@ -56,6 +56,10 @@ def display_kanizsa_rectangle(aspect_ratio, rectangle_scale, circle_scale):
     
     control.end()
     
-#display_kanizsa_rectangle(aspect_ratio=1.5, rectangle_scale=0.25, circle_scale=0.2)
-display_kanizsa_rectangle(aspect_ratio=3.5, rectangle_scale=0.15, circle_scale=0.3)
+display_kanizsa_rectangle(aspect_ratio=1.5, rectangle_scale=0.25, circle_scale=0.2) # the best
+# display_kanizsa_rectangle(aspect_ratio=3.5, rectangle_scale=0.15, circle_scale=0.3)
 # display_kanizsa_rectangle(aspect_ratio=3.5, rectangle_scale=0.35, circle_scale=0.45)
+
+# 0.30-0.35 rectangle scale: Circles farther apart - illusion may weaken
+# 0.40-0.45 circle scale: Overlapping may disrupt illusion
+# Otherwise it is kinda fine for me.
