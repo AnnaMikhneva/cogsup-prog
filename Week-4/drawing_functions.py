@@ -1,67 +1,70 @@
 from expyriment import design, control, stimuli
 import random
+import math
+
+FPS  = 60
+MSPF = 1000 / FPS # ms per frame
+
+def to_frames(t):
+    return math.ceil(t / MSPF)
+
+def to_time(num_frames):
+    return num_frames * MSPF
 
 def load(stims):
-    """Preload the stimuli passed as input"""
     for stim in stims:
         stim.preload()
 
-def timed_draw(stims):
-    """Draw a list of (preloaded) stimuli on-screen, return the time it took to execute the drawing"""
-    start_time = exp.clock.time
-    for stim in stims:
-        stim.present(clear=False, update=False)
-    exp.screen.update()
-    return exp.clock.time - start_time
+def timed_draw(exp, stims):
+    t0 = exp.clock.time # Initial time
 
-def present_for(stims, t=1000):
-    """Draw and keep stimuli on-screen for time t in ms (be mindful of edge cases!)"""
-    # Clear the screen first
     exp.screen.clear()
-    
-    # Record start time
-    start_time = exp.clock.time
-    
-    # Draw all stimuli
     for stim in stims:
         stim.present(clear=False, update=False)
     exp.screen.update()
     
-    # Calculate remaining time after drawing
-    draw_time = exp.clock.time - start_time
-    remaining_time = t - draw_time
-    
-    # Present for the remaining duration
-    if remaining_time > 0:
-        exp.clock.wait(remaining_time)
+    elapsed = exp.clock.time - t0 # Time it took to execute and present drawn stims
+    return elapsed
+
+def present_for(exp, stims, num_frames):
+    if num_frames == 0:
+        return
+
+    dt = timed_draw(exp, stims)
+    if dt > 0:
+        t = to_time(num_frames)
+        exp.clock.wait(t - dt)
 
 
-""" Test functions """
-exp = design.Experiment()
+if __name__ == "__main__":
+    exp = design.Experiment()
 
-control.set_develop_mode()
-control.initialize(exp)
+    control.set_develop_mode()
+    control.initialize(exp)
 
-fixation = stimuli.FixCross()
-load([fixation])
+    fixation = stimuli.FixCross()
 
-n = 20
-positions = [(random.randint(-300, 300), random.randint(-300, 300)) for _ in range(n)]
-squares = [stimuli.Rectangle(size=(50, 50), position = pos) for pos in positions]
-load(squares)
+    n_squares = 20
+    positions = [(random.randint(-300, 300), random.randint(-300, 300)) for _ in range(n_squares)]
+    squares = [stimuli.Rectangle(size=(50, 50), position = pos) for pos in positions]
+    load([fixation] + squares)
 
-durations = []
+    durations = []
+    t0 = exp.clock.time
 
-t0 = exp.clock.time
-for square in squares:
-    if not square.is_preloaded:
-        print("Preloading function not implemented correctly.")
-    stims = [fixation, square] 
-    present_for(stims, 500)
-    t1 = exp.clock.time
-    durations.append(t1-t0)
-    t0 = t1
+    for square in squares:
+        if not square.is_preloaded:
+            print("Preloading function not implemented correctly.")
 
-print(durations)
+        stims = [fixation, square] 
+        present_for(exp, stims, num_frames=30)
+        t1 = exp.clock.time
+        durations.append(t1 - t0)
+        t0 = t1
 
-control.end()
+    if all(abs(d - 500) <= 1 for d in durations):
+        print("Well done!")
+    else:
+        print(f"Timing off. Measured durations were: {durations}")
+
+    control.end()

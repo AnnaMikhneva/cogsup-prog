@@ -1,29 +1,13 @@
 from expyriment import design, control, stimuli
 from expyriment.misc.constants import K_SPACE, C_WHITE, C_BLACK
 import random
+from drawing_functions import load, present_for
 
 exp = design.Experiment(name="Ternus Illusion", background_colour=C_WHITE)
 control.set_develop_mode()
 control.initialize(exp)
 
-def load(stims):
-    for stim in stims:
-        stim.preload()
 
-def present_for(stims, frames=12):
-    """Present stimuli for given number of frames using accurate timing."""
-    t_ms = frames * (1000 / 60)  # More precise frame duration
-    t0 = exp.clock.time
-    
-    # Draw stimuli once
-    exp.screen.clear() 
-    for stim in stims:
-        stim.present(clear=False, update=False)
-    exp.screen.update()
-    
-    # Wait for remaining time
-    draw_time = exp.clock.time - t0
-    exp.clock.wait(max(0, t_ms - draw_time))
 
 def make_circles(radius, positions, colors=None):
     circles = []
@@ -49,20 +33,20 @@ def run_trial(radius=30, isi_frames=1, color_tags=False):
           (255,255,0)]  
 
     circles = make_circles(radius, positions, colors=tag_colors)
-    display_frames = 30  # Now actually ~500ms (30 frames at 60Hz)
+    display_frames = 30  
     
     frame1 = [circles[0], circles[1], circles[2]]
     frame2 = [circles[1], circles[2], circles[3]]
 
     while True:
-        present_for(frame1, frames=display_frames)
+        present_for(exp, frame1, num_frames=display_frames)
 
         if isi_frames > 0:
             exp.screen.clear()
             exp.screen.update()            
             exp.clock.wait(isi_frames * (1000 / 60))
 
-        present_for(frame2, frames=display_frames)
+        present_for(exp, frame2, num_frames=display_frames)
  
         if isi_frames > 0:
             exp.screen.clear()
@@ -83,5 +67,3 @@ control.start(subject_id=random.randint(1, 999))
 for trial in trials:
     run_trial(**trial)
 control.end()
-
-# the second one does not really work on me but I feel like it could 
