@@ -47,7 +47,7 @@ def run_trial(radius=30, isi_frames=1, color_tags=False):
             exp.clock.wait(isi_frames * (1000 / 60))
 
         present_for(exp, frame2, num_frames=display_frames)
- 
+  
         if isi_frames > 0:
             exp.screen.clear()
             exp.screen.update()

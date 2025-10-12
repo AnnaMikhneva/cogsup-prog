@@ -1,0 +1,19 @@
+#Expyriment 1.0.0 (Python 3.13.7), .xpe-file, coding: cp1251
+#date: Sun Oct 12 2025 16:43:11
+#sha1: 35ac76
+#modules: 
+#display: size=(800, 600), window_mode=True, opengl=2
+#os: uname_result(system='Windows', node='LAPTOP-AFL7R53R', release='10', version='10.0.19045', machine='AMD64')
+Time,Type,Event,Value,Detail,Detail2
+2273,design,log,
+#design: #exp: Blindspot
+#design: #dvn: test_eye,key_pressed,current_radius,x_coord,y_coord
+#design: block_cnt,block_id,trial_cnt,trial_id
+2273,design,logged,
+2273,Experiment,started
+2285,Stimulus,presented,0
+4304,Keyboard,received,108,wait
+4304,Experiment,ended
+4430,stderr,received,'Traceback (most recent call last):'
+4430,stderr,received,'  File "d:\\Аня\\2025-2026\\cogsup\\Programming\\Assignments\\Week-5\\Exercises\\blindspot2.py", line 108, in <module>\n    raise ValueError("Unexpected key pressed")'
+4430,stderr,received,'ValueError: Unexpected key pressed'

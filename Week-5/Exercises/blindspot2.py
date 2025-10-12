@@ -1,5 +1,9 @@
 from expyriment import design, control, stimuli
-from expyriment.misc.constants import C_WHITE, C_BLACK, K_SPACE, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_1, K_2, K_l, K_r
+from expyriment.misc.constants import (
+    C_WHITE, C_BLACK,
+    K_SPACE, K_UP, K_DOWN, K_LEFT, K_RIGHT,
+    K_1, K_2, K_l, K_r
+)
 
 """ Global settings """
 exp = design.Experiment(name="Blindspot", background_colour=C_WHITE, foreground_colour=C_BLACK)
@@ -13,17 +17,17 @@ def make_circle(r, pos=(0,0)):
     return c
 
 def run_trial(side):
-    # Determine instructions and positions based on side
+
     if side == "left":
         cover_eye = "RIGHT"
         fixate_side = "LEFT"
-        fixation_pos = [-300, 0]   # Fixation on LEFT side
-        start_pos = [300, 0]       # Circle starts on RIGHT side
-    elif side == 'right':  # right
+        fixation_pos = [-300, 0]  
+        start_pos = [300, 0]      
+    elif side == "right":
         cover_eye = "LEFT"
         fixate_side = "RIGHT"
-        fixation_pos = [300, 0]    # Fixation on RIGHT side
-        start_pos = [-300, 0]      # Circle starts on LEFT side
+        fixation_pos = [300, 0]  
+        start_pos = [-300, 0]     
     
     instructions = stimuli.TextScreen(
         "Blind Spot Test",
@@ -37,7 +41,7 @@ def run_trial(side):
     instructions.present()
     exp.keyboard.wait(K_SPACE)
     
-    # Create fixation cross on the correct side
+
     fixation = stimuli.FixCross(size=(150, 150), line_width=10, position=fixation_pos)
     fixation.preload()
 
@@ -62,13 +66,15 @@ def run_trial(side):
             position[0] -= 5
         elif key == K_RIGHT:
             position[0] += 5
-        elif key == K_1:  # Smaller
+        elif key == K_1:  
             radius = max(10, radius - 5)
-        elif key == K_2:  # Larger
+        elif key == K_2: 
             radius = min(200, radius + 5)
         
         circle = make_circle(radius, position)
- 
+
+    exp.data.add([side, radius, position[0], position[1]])
+
 
 control.start(subject_id=1)
 
@@ -83,14 +89,11 @@ key = exp.keyboard.wait([K_l, K_r])
 
 if key == K_l:
     side = "left"
-elif key == K_r:
-    side = "right"
 else:
-    control.end()
-    raise ValueError("Unexpected key pressed")
-
+    side = "right"
 
 run_trial(side)
+
 
 finish_screen = stimuli.TextScreen(
     "Blind Spot Test",
@@ -99,5 +102,6 @@ finish_screen = stimuli.TextScreen(
 )
 finish_screen.present()
 exp.keyboard.wait()
+
 
 control.end()
