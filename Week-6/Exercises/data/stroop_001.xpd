@@ -1,0 +1,43 @@
+#Expyriment 1.0.0 (Python 3.13.7), .xpd-file, coding: cp1251
+#date: Wed Oct 15 2025 16:53:48
+#--EXPERIMENT INFO
+#e mainfile: stroop.py
+#e sha1: fd5dba
+#e modules: 
+#e Experiment: Stroop
+#e no between subject factors
+#--SUBJECT INFO
+#s id: 1
+subject_id,block_cnt,trial_cnt,trial_type,word,color,RT,correct
+1,1,1,mismatch,red,orange,1465,True
+1,1,2,match,orange,orange,1153,False
+1,1,3,match,orange,orange,3818,False
+1,1,4,mismatch,green,orange,1543,True
+1,1,5,mismatch,green,red,868,False
+1,1,6,mismatch,orange,red,1130,True
+1,1,7,match,blue,blue,1618,True
+1,1,8,match,orange,orange,2586,True
+1,1,9,match,blue,blue,3320,True
+1,1,10,match,green,green,1103,True
+1,1,11,match,red,red,948,True
+1,1,12,mismatch,orange,red,770,True
+1,1,13,mismatch,orange,green,1055,True
+1,1,14,match,orange,orange,1729,True
+1,1,15,mismatch,blue,green,802,True
+1,1,16,match,red,red,1060,True
+1,2,1,match,orange,orange,1504,True
+1,2,2,mismatch,red,blue,672,True
+1,2,3,match,blue,blue,1570,True
+1,2,4,match,red,red,1276,True
+1,2,5,match,green,green,675,True
+1,2,6,mismatch,blue,green,671,True
+1,2,7,match,blue,blue,716,True
+1,2,8,mismatch,green,blue,745,True
+1,2,9,match,green,green,665,True
+1,2,10,mismatch,red,orange,1013,True
+1,2,11,match,red,red,635,True
+1,2,12,mismatch,orange,green,671,True
+1,2,13,match,red,red,486,True
+1,2,14,mismatch,green,blue,604,True
+1,2,15,match,green,green,639,True
+1,2,16,match,blue,blue,817,True
